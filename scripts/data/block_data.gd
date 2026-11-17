@@ -2,10 +2,10 @@ class_name BlockData
 extends Resource
 
 enum BlockType {
-ASTEROID_CRUST,
-TITANIUM_BULKHEAD,
-UNSTABLE_CORE,
-DATA_VAULT
+	ASTEROID_CRUST,
+	TITANIUM_BULKHEAD,
+	UNSTABLE_CORE,
+	DATA_VAULT
 }
 
 @export var block_type: BlockType = BlockType.ASTEROID_CRUST
