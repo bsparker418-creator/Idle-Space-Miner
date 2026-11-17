@@ -20,13 +20,46 @@ block_scene = ExtResource("2_block")
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_hud")
 
-[node name="ScrapLabel" type="Label" parent="HUD"]
+[node name="SectorLabel" type="Label" parent="HUD"]
 unique_name_in_owner = true
 offset_left = 32.0
-offset_top = 60.0
+offset_top = 48.0
+offset_right = 360.0
+offset_bottom = 104.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.9, 0.91, 0.96, 1)
+theme_override_font_sizes/font_size = 36
+text = "Sector 1"
+
+[node name="ScrapLabel" type="Label" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 360.0
+offset_top = 48.0
 offset_right = 688.0
-offset_bottom = 120.0
+offset_bottom = 104.0
 mouse_filter = 2
 theme_override_colors/font_color = Color(1, 0.7, 0.24, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 36
 text = "Scrap: 0"
+horizontal_alignment = 2
+
+[node name="SectorProgress" type="ProgressBar" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 32.0
+offset_top = 124.0
+offset_right = 688.0
+offset_bottom = 160.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 20
+max_value = 63.0
+step = 1.0
+
+[node name="WarpButton" type="Button" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+offset_left = 160.0
+offset_top = 860.0
+offset_right = 560.0
+offset_bottom = 980.0
+theme_override_font_sizes/font_size = 28
+text = "Power up warp gate"

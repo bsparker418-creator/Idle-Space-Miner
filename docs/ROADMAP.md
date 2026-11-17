@@ -29,10 +29,10 @@ The plan for turning the current prototype into a playable idle game. Each miles
 **Done when:** you tap blocks and watch scrap go up.
 
 ### 2. Core loop
-- [ ] Mining rule (see decision 1)
-- [ ] Sector progress bar
-- [ ] Warp gate opens when the grid is clear and moves you to the next sector
-- [ ] Each sector is tougher (for example +25% HP) and pays more
+- [x] Mining rule: only exposed blocks (top row, or next to a cleared cell) can be tapped; buried blocks are dimmed. Explosions still hit buried blocks.
+- [x] Sector progress bar
+- [x] Warp gate button appears when the grid is clear; it pays a clear bonus (200 × 1.2^(sector − 1)) and moves you to the next sector
+- [x] Each sector has +25% block HP and explosion damage, and +20% scrap drops (constants in `game_state.gd`)
 
 **Done when:** tap, earn, clear, move on.
 
@@ -67,6 +67,6 @@ The plan for turning the current prototype into a playable idle game. Each miles
 
 ## Open decisions
 
-1. **Mining rule:** tap any block, or only exposed blocks (top row or next to cleared space)? Leaning: exposed only.
+1. ~~**Mining rule:**~~ Decided: exposed only.
 2. **Where mechs live:** on the grid (as in the README) or in a separate bay? Leaning: on the grid.
 3. **Art:** placeholder squares until Milestone 7, or a free pack (Kenney.nl) earlier? Leaning: placeholders until Milestone 3 is fun.

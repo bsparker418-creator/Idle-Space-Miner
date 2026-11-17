@@ -4,11 +4,37 @@ extends Node
 ## keeping their own copies. Later this is what gets saved to disk.
 
 signal resource_changed(resource_type: String, total: int)
+signal sector_changed(sector: int)
+
+## Each sector multiplies block HP by this (1.25 = +25% per sector).
+const HP_GROWTH := 1.25
+## Each sector multiplies scrap drops and the clear bonus by this.
+const REWARD_GROWTH := 1.2
+## Scrap paid out for powering up the warp gate in sector 1.
+const CLEAR_BONUS := 200
 
 ## Currency totals, keyed by type, e.g. {"nanite_scrap": 125}.
 var resources: Dictionary = {}
 
 var sector: int = 1
+
+## Damage per tap. Kept here so upgrades can raise it later.
+var tap_damage: float = 25.0
+
+func hp_multiplier() -> float:
+	return pow(HP_GROWTH, sector - 1)
+
+func reward_multiplier() -> float:
+	return pow(REWARD_GROWTH, sector - 1)
+
+func clear_bonus() -> int:
+	return int(round(CLEAR_BONUS * reward_multiplier()))
+
+## Pays the clear bonus for the current sector and moves to the next one.
+func advance_sector() -> void:
+	add_resource("nanite_scrap", clear_bonus())
+	sector += 1
+	sector_changed.emit(sector)
 
 func _ready() -> void:
 	GameEvents.resource_collected.connect(add_resource)
