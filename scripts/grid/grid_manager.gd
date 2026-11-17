@@ -5,6 +5,12 @@ extends Node2D
 @export var grid_height: int = 9
 @export var tile_size: int = 68
 @export var block_scene: PackedScene
+## Block types that can spawn. Edit their stats in data/blocks/*.tres.
+@export var block_types: Array[BlockData] = [
+	preload("res://data/blocks/asteroid_crust.tres"),
+	preload("res://data/blocks/titanium_bulkhead.tres"),
+	preload("res://data/blocks/unstable_core.tres"),
+]
 
 var blocks: Dictionary = {}
 
@@ -50,28 +56,16 @@ func _trigger_explosion(center: Vector2i, damage: float, radius: int) -> void:
 						blocks[target_pos].take_damage(damage)
 				)
 
+## Picks a block type at random, weighted by each type's spawn_weight.
+## The resources are shared, read-only templates: each block keeps its own HP.
 func _get_random_block_data() -> BlockData:
-	var data = BlockData.new()
-	var roll = randf()
+	var total := 0.0
+	for t in block_types:
+		total += t.spawn_weight
 
-	if roll < 0.15:
-		data.title = "Unstable Core"
-		data.block_type = BlockData.BlockType.UNSTABLE_CORE
-		data.max_hp = 50.0
-		data.color = Color(1.0, 0.25, 0.25)
-		data.is_explosive = true
-		data.explosion_damage = 75.0
-	elif roll < 0.40:
-		data.title = "Titanium Bulkhead"
-		data.block_type = BlockData.BlockType.TITANIUM_BULKHEAD
-		data.max_hp = 250.0
-		data.color = Color(0.2, 0.4, 0.7)
-		data.drop_amount = 60
-	else:
-		data.title = "Asteroid Crust"
-		data.block_type = BlockData.BlockType.ASTEROID_CRUST
-		data.max_hp = 100.0
-		data.color = Color(0.35, 0.35, 0.38)
-		data.drop_amount = 25
-
-	return data
+	var roll := randf() * total
+	for t in block_types:
+		roll -= t.spawn_weight
+		if roll < 0.0:
+			return t
+	return block_types.back()

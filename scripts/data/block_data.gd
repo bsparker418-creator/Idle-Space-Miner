@@ -19,3 +19,7 @@ enum BlockType {
 @export var is_explosive: bool = false
 @export var explosion_damage: float = 80.0
 @export var explosion_radius: int = 1
+
+## Relative chance of this block appearing. Weights are compared against each
+## other, so 60/25/15 means 60%, 25% and 15%. Set to 0 to stop it spawning.
+@export var spawn_weight: float = 1.0

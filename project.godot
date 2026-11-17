@@ -8,6 +8,7 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 GameEvents="*res://scripts/autoload/game_events.gd"
+GameState="*res://scripts/autoload/game_state.gd"
 
 [display]
 window/size/viewport_width=720

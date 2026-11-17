@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BlockData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/block_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+block_type = 2
+title = "Unstable Core"
+max_hp = 50.0
+color = Color(1, 0.25, 0.25, 1)
+drop_type = "nanite_scrap"
+drop_amount = 25
+is_explosive = true
+explosion_damage = 75.0
+explosion_radius = 1
+spawn_weight = 15.0

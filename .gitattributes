@@ -1,0 +1,11 @@
+# Store text files with LF line endings (what Godot writes), on every OS.
+* text=auto eol=lf
+
+# Never touch binary assets.
+*.png binary
+*.jpg binary
+*.wav binary
+*.ogg binary
+*.mp3 binary
+*.ttf binary
+*.otf binary
