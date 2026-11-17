@@ -48,7 +48,7 @@ func _update_ui() -> void:
 		hp_bar.max_value = data.max_hp
 		hp_bar.value = current_hp
 	if hp_label:
-		hp_label.text = str(ceil(current_hp))
+		hp_label.text = str(int(ceil(current_hp)))
 
 func _input_event(_viewport, event, _shape_idx) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
