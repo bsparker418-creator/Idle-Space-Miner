@@ -37,10 +37,11 @@ The plan for turning the current prototype into a playable idle game. Each miles
 **Done when:** tap, earn, clear, move on.
 
 ### 3. Mechs and merging
-- [ ] Mech scene that sits on a cleared tile and fires at adjacent blocks once per second
-- [ ] Damage = `10 × 2.15^(tier − 1)`
-- [ ] "Deploy mech" button with a rising cost
-- [ ] Drag a mech onto one of the same tier to merge; drag to move
+- [x] Direction flipped: you dig **upward** from a launch pad under the grid. The bottom row starts exposed; the warp gate sits at the top and powers up once every block is cleared.
+- [x] Mechs stand on the launch pad (7 slots, which is also the mech limit) or on any cleared cell, and fire once per second at a neighbouring block (up first, then left, right, down)
+- [x] Damage = `10 × 2.15^(tier − 1)`
+- [x] "Deploy mech" button; cost = `50 × 1.35^(mechs bought)`. New games start with one free T1 mech.
+- [x] Drag to move; drop on the same tier to merge, on a different tier to swap. Mechs return to the pad at each new sector.
 
 **Done when:** you plan where mechs go, merge them, and watch them work. This is the point where it becomes playable.
 
@@ -68,5 +69,5 @@ The plan for turning the current prototype into a playable idle game. Each miles
 ## Open decisions
 
 1. ~~**Mining rule:**~~ Decided: exposed only.
-2. **Where mechs live:** on the grid (as in the README) or in a separate bay? Leaning: on the grid.
+2. ~~**Where mechs live:**~~ Decided: on the grid, deployed from a launch pad under it.
 3. **Art:** placeholder squares until Milestone 7, or a free pack (Kenney.nl) earlier? Leaning: placeholders until Milestone 3 is fun.

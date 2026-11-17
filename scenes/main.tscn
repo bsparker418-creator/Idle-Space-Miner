@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/grid/grid_manager.gd" id="1_grid"]
 [ext_resource type="PackedScene" path="res://scenes/block.tscn" id="2_block"]
 [ext_resource type="Script" path="res://scripts/ui/hud.gd" id="3_hud"]
+[ext_resource type="Script" path="res://scripts/mechs/mech_manager.gd" id="4_mechs"]
 
 [node name="Main" type="Node2D"]
 
@@ -13,9 +14,14 @@ mouse_filter = 2
 color = Color(0.05, 0.06, 0.11, 1)
 
 [node name="GridManager" type="Node2D" parent="."]
-position = Vector2(122, 200)
+position = Vector2(122, 240)
 script = ExtResource("1_grid")
 block_scene = ExtResource("2_block")
+
+[node name="MechManager" type="Node2D" parent="." node_paths=PackedStringArray("grid")]
+position = Vector2(122, 240)
+script = ExtResource("4_mechs")
+grid = NodePath("../GridManager")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_hud")
@@ -23,9 +29,9 @@ script = ExtResource("3_hud")
 [node name="SectorLabel" type="Label" parent="HUD"]
 unique_name_in_owner = true
 offset_left = 32.0
-offset_top = 48.0
+offset_top = 36.0
 offset_right = 360.0
-offset_bottom = 104.0
+offset_bottom = 92.0
 mouse_filter = 2
 theme_override_colors/font_color = Color(0.9, 0.91, 0.96, 1)
 theme_override_font_sizes/font_size = 36
@@ -34,9 +40,9 @@ text = "Sector 1"
 [node name="ScrapLabel" type="Label" parent="HUD"]
 unique_name_in_owner = true
 offset_left = 360.0
-offset_top = 48.0
+offset_top = 36.0
 offset_right = 688.0
-offset_bottom = 104.0
+offset_bottom = 92.0
 mouse_filter = 2
 theme_override_colors/font_color = Color(1, 0.7, 0.24, 1)
 theme_override_font_sizes/font_size = 36
@@ -46,20 +52,67 @@ horizontal_alignment = 2
 [node name="SectorProgress" type="ProgressBar" parent="HUD"]
 unique_name_in_owner = true
 offset_left = 32.0
-offset_top = 124.0
+offset_top = 100.0
 offset_right = 688.0
-offset_bottom = 160.0
+offset_bottom = 128.0
 mouse_filter = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 18
 max_value = 63.0
 step = 1.0
 
-[node name="WarpButton" type="Button" parent="HUD"]
+[node name="WarpGate" type="Button" parent="HUD"]
 unique_name_in_owner = true
-visible = false
+offset_left = 122.0
+offset_top = 146.0
+offset_right = 598.0
+offset_bottom = 228.0
+theme_override_colors/font_color = Color(0.9, 0.91, 0.96, 1)
+theme_override_colors/font_disabled_color = Color(0.71, 0.55, 1, 1)
+theme_override_font_sizes/font_size = 20
+disabled = true
+text = "WARP GATE OFFLINE"
+
+[node name="PadLabel" type="Label" parent="HUD"]
+offset_left = 122.0
+offset_top = 924.0
+offset_right = 598.0
+offset_bottom = 950.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.37, 0.88, 1, 0.7)
+theme_override_font_sizes/font_size = 16
+text = "LAUNCH PAD"
+horizontal_alignment = 1
+
+[node name="MechLabel" type="Label" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 32.0
+offset_top = 960.0
+offset_right = 688.0
+offset_bottom = 1000.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.37, 0.88, 1, 1)
+theme_override_font_sizes/font_size = 26
+text = "Mechs 0/7"
+horizontal_alignment = 1
+
+[node name="DeployButton" type="Button" parent="HUD"]
+unique_name_in_owner = true
 offset_left = 160.0
-offset_top = 860.0
+offset_top = 1010.0
 offset_right = 560.0
-offset_bottom = 980.0
-theme_override_font_sizes/font_size = 28
-text = "Power up warp gate"
+offset_bottom = 1110.0
+theme_override_font_sizes/font_size = 26
+text = "Deploy mech"
+
+[node name="HintLabel" type="Label" parent="HUD"]
+offset_left = 32.0
+offset_top = 1130.0
+offset_right = 688.0
+offset_bottom = 1220.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.55, 0.58, 0.7, 1)
+theme_override_font_sizes/font_size = 18
+text = "Drag a mech onto a cleared cell to move it.
+Drop it on a mech of the same tier to merge."
+horizontal_alignment = 1
+autowrap_mode = 3

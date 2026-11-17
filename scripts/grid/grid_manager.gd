@@ -49,10 +49,11 @@ func spawn_block(pos: Vector2i, data: BlockData, hp_mult: float = 1.0, drop_mult
 	block.destroyed.connect(_on_block_destroyed)
 	blocks[pos] = block
 
-## Mining rule: a block can be tapped if it is in the top row, or if any
-## block directly above, below, left or right of it has been cleared.
+## Mining rule: you dig upward from the launch pad. A block can be tapped if
+## it is in the bottom row, or if any cell directly above, below, left or
+## right of it has been cleared.
 func is_exposed(pos: Vector2i) -> bool:
-	if pos.y == 0:
+	if pos.y == grid_height - 1:
 		return true
 	for dir in NEIGHBORS:
 		var n = pos + dir

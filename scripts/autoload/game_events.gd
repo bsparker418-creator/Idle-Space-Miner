@@ -8,3 +8,8 @@ signal resource_collected(resource_type: String, amount: int)
 signal sector_progress(cleared: int, total: int)
 ## Fired once when the last block in the sector is destroyed.
 signal sector_cleared(sector: int)
+
+## UI asks for a new mech; MechManager decides whether it can afford/fit it.
+signal deploy_requested
+## Fired whenever mechs are added, merged or reset.
+signal mechs_changed(count: int, max_count: int, total_dps: float)

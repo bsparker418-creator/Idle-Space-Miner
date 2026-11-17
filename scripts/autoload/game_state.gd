@@ -18,8 +18,24 @@ var resources: Dictionary = {}
 
 var sector: int = 1
 
+## Mech damage per shot = MECH_BASE_DAMAGE × MECH_TIER_GROWTH^(tier − 1).
+const MECH_BASE_DAMAGE := 10.0
+const MECH_TIER_GROWTH := 2.15
+## Deploy cost = MECH_BASE_COST × MECH_COST_GROWTH^(mechs bought so far).
+const MECH_BASE_COST := 50
+const MECH_COST_GROWTH := 1.35
+
 ## Damage per tap. Kept here so upgrades can raise it later.
 var tap_damage: float = 25.0
+
+## How many mechs the player has bought in total (drives the rising cost).
+var mechs_bought: int = 0
+
+func mech_damage(tier: int) -> float:
+	return MECH_BASE_DAMAGE * pow(MECH_TIER_GROWTH, tier - 1)
+
+func deploy_cost() -> int:
+	return int(round(MECH_BASE_COST * pow(MECH_COST_GROWTH, mechs_bought)))
 
 func hp_multiplier() -> float:
 	return pow(HP_GROWTH, sector - 1)
